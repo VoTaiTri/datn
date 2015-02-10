@@ -1,0 +1,10 @@
+<li>
+	<div class="col-md-4">
+  	<%= link_to lecturer.name, lecturer %>
+	</div>
+  <div class="col-md-4">
+	  <%= link_to 'Edit', edit_lecturer_path(lecturer) %>
+	  <%= link_to 'Delete', lecturer_path(lecturer), method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  </div>                                
+</li>

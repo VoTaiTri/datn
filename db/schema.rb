@@ -11,12 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209065104) do
+ActiveRecord::Schema.define(version: 20150209085155) do
 
   create_table "departments", force: :cascade do |t|
     t.text     "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "lecturers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "remember_digest"
+    t.string   "avatar"
+    t.boolean  "admin",           default: false
+    t.integer  "department_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "lecturers", ["department_id"], name: "index_lecturers_on_department_id"
+  add_index "lecturers", ["email"], name: "index_lecturers_on_email", unique: true
 
 end
