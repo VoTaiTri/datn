@@ -1,6 +1,6 @@
 class LecturersController < ApplicationController
   def show
-  	@lecturer = Lecturer.find(params[:id])
+  	@lecturer = Lecturer.find params[:id]
   end
 
   def index 
@@ -14,6 +14,7 @@ class LecturersController < ApplicationController
   def create
     @lecturer = Lecturer.new(lecturer_params)
     if @lecturer.save
+      log_in @lecturer
       flash[:success] = "Created!"
       redirect_to lecturers_path
     else
@@ -22,11 +23,11 @@ class LecturersController < ApplicationController
   end
 
   def edit 
-  	@lecturer = Lecturer.find(params[:id])
+  	@lecturer = Lecturer.find params[:id]
   end
 
   def update
-    @lecturer = Lecturer.find(params[:id])
+    @lecturer = Lecturer.find params[:id]
     if @lecturer.update_attributes(lecturer_params)
       flash[:success] = "Account updated"
       redirect_to lecturers_path
