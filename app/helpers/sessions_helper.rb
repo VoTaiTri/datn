@@ -32,6 +32,14 @@ module SessionsHelper
     !current_lecturer.nil?
   end
 
+  def logged_in_admin?
+    !current_lecturer.nil? && current_lecturer.admin?
+  end
+
+  def logged_in_lecturer?
+    !current_lecturer.nil? && !current_lecturer.admin?
+  end
+
   def log_out
     session.delete :lecturer_id
     current_lecturer = nil
