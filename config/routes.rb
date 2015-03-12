@@ -10,11 +10,13 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
 
-  resources :departments
+  resources :departments, :only => [:index, :show]
   resources :lecturers
+  resources :subjects
 
   namespace :admin do
     resources :lecturers
     resources :departments
+    resources :subjects
   end
 end

@@ -37,14 +37,13 @@ class Admin::LecturersController < AdminController
 
   def destroy
     Lecturer.find(params[:id]).destroy
-    flash[:success] = "Lecturer deleted"
+    flash[:success] = "Lecturer deleted!"
     redirect_to admin_lecturers_path
   end
 
   private
-
-    def lecturer_params
-        params.require(:lecturer).permit(:name, :email, :password,
-                                   :password_confirmation)
-    end
+  def lecturer_params
+    params.require(:lecturer).permit :name, :email, :password,
+                                   :password_confirmation
+  end
 end

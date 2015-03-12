@@ -4,7 +4,7 @@ class LecturersController < ApplicationController
   end
 
   def index 
-  	@lecturers = Lecturer.paginate(page: params[:page])
+  	@lecturers = Lecturer.paginate page: params[:page]
   end
 
   def new
@@ -37,6 +37,7 @@ class LecturersController < ApplicationController
   end
 
   def destroy
+    Lecturer.find(params[:id]).subjects.destroy
     Lecturer.find(params[:id]).destroy
     flash[:success] = "Account deleted"
     redirect_to lecturers_url

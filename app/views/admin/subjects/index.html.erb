@@ -1,0 +1,25 @@
+<% provide(:title, 'All Lecturers') %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      thong tin user
+    </section>
+    <section class="stats">
+    </section>
+    <section class="entry_form">
+    </section>
+  </aside>
+
+  <div class="col-md-8">
+    <h3>All subject</h3>
+    <%= will_paginate @subjects%>
+
+    <ul class="departments">
+      <% @subjects.each do |subject| %>
+        <%= render subject %>
+      <% end %>
+    </ul>
+
+    <%= will_paginate @subjects%>
+  </div>
+</div>

@@ -3,6 +3,9 @@ class Lecturer < ActiveRecord::Base
 
   belongs_to :department
 
+  has_many :teachings, dependent: :destroy
+  has_many :subjects, through: :teachings
+
   before_save :downcase_email
 
 	validates :name, presence: true, length: {maximum: 50}
@@ -13,6 +16,8 @@ class Lecturer < ActiveRecord::Base
   has_secure_password        
   validates :password, length: {minimum: 6}
   validates :avatar, length: {maximum: 255}
+
+  accept_nested_attributes_for :teachings, allow_destroy: true
 
   # Returns the hash digest of the given string.
   def Lecturer.digest(string)
